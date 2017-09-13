@@ -299,7 +299,7 @@ private
     if station.trains.empty?
       puts "На станции #{station.name} нет поездов"
     else
-      station.handle_trains { |train| puts train.number }
+      station.each_train { |train| puts train.number }
     end    
   rescue => e
     puts e.message
@@ -325,12 +325,18 @@ private
   def take_place_in_wagon
     wagon = choose_wagon
     if wagon.class == PassengerWagon
-      wagon.take_seat
-      puts "Место успешно занято, свободных мест: #{wagon.free_seats}"
+      puts "Введите количество занимаемых мест"
+      number = gets.to_i
+      wagon.take_seat(number)
+      puts "Места успешно заняты, свободных мест: #{wagon.free_seats}"
     elsif wagon.class == CargoWagon
-      wagon.occupy_volume
+      puts "Введите занимаемый объем"
+      volume = gets.to_i
+      wagon.occupy_volume(volume)
       puts "Объем успешно занят, свободный объем: #{wagon.free_volume}"
     end 
+  rescue => e
+    puts e.message
   end
 
   def choose_wagon

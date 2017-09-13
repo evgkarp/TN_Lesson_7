@@ -78,7 +78,7 @@ class Train
     raise "Нет ни одного вагона у этого поезда" if @wagons.empty?    
   end
 
-  def handle_wagons
+  def each_wagon
     @wagons.each { |wagon| yield(wagon) }
   end
 

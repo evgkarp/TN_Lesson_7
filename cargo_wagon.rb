@@ -9,9 +9,10 @@ class CargoWagon < Wagon
     @busy_volume = 0 
   end
 
-  def occupy_volume
+  def occupy_volume(volume)
     raise "Нет свободного объема" if @free_volume == 0
-    @busy_volume += 1
-    @free_volume -= 1
+    raise "Занимаемый объем больше, чем доступный (#{@free_volume})" if volume > @free_volume
+    @busy_volume += volume
+    @free_volume = @total_volume - @busy_volume
   end
 end

@@ -30,7 +30,7 @@ class Station
     @trains.delete(train)    
   end
 
-  def handle_trains
+  def each_train
     @trains.each { |train| yield(train) }
   end
 
