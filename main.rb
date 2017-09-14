@@ -325,10 +325,8 @@ private
   def take_place_in_wagon
     wagon = choose_wagon
     if wagon.class == PassengerWagon
-      puts "Введите количество занимаемых мест"
-      number = gets.to_i
-      wagon.take_seat(number)
-      puts "Места успешно заняты, свободных мест: #{wagon.free_seats}"
+      wagon.take_seat
+      puts "Место успешно занято, свободных мест: #{wagon.free_seats}"
     elsif wagon.class == CargoWagon
       puts "Введите занимаемый объем"
       volume = gets.to_i
